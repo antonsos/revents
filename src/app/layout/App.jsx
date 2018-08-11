@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import EventDashboard from '../../features/event/EventDashboard/EventDashboard';
 import NavBar from '../../features/nav/NavBar/NavBar';
 import EventForm from '../../features/event/EventForm/EventForm';
-import SettingsDashboard from '../../features/user/Settings/SettingsDashboard';
+import SettingsDashboard from '../../features/user/settings/SettingsDashboard';
 import UserDetailedPage from '../../features/user/UserDetailed/UserDetailedPage';
 import PeopleDashboard from '../../features/user/PeopleDashboard/PeopleDashboard';
 import EventDetailedPage from '../../features/event/EventDetailed/EventDetailedPage';
