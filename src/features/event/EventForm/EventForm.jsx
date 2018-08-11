@@ -7,6 +7,7 @@ import {
   isRequired,
   hasLengthGreaterThan
 } from "revalidate";
+import moment from 'moment';
 import cuid from "cuid";
 import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { createEvent, updateEvent } from "../eventActions";
@@ -15,6 +16,7 @@ import { createEvent, updateEvent } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 import SelectInput from "../../../app/common/form/SelectInput";
+import DateInput from "../../../app/common/form/DateInput";
 
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
@@ -54,11 +56,13 @@ const validate = combineValidators({
     })
   )(),
   city: isRequired("city"),
-  venue: isRequired("venue")
+  venue: isRequired("venue"),
+  date: isRequired("date"),
 });
 
 class EventForm extends Component {
   onFormSubmit = value => {
+    value.date = moment(value.date).format()
     if (this.props.initialValues.id) {
       this.props.updateEvent(value);
       this.props.history.goBack();
@@ -118,8 +122,11 @@ class EventForm extends Component {
               <Field
                 name="date"
                 type="text"
-                component={TextInput}
-                placeholder="Event Date"
+                component={DateInput}
+                placeholder="Date and Time of Event"
+                dateFormat="YYYY-MM-DD HH:mm"
+                timeFormat="HH:mm"
+                showTimeSelect
               />
               <Button disabled={invalid || submitting || pristine} positive type="submit">
                 Submit
